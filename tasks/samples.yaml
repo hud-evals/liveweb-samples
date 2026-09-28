@@ -1,0 +1,57 @@
+tasks:
+- name: ladybird-spot-num
+  url: https://sketchfab.com/models/bb0d472df4824cf394bb75215966b490/embed
+  prompt: You are viewing a Sketchfab page displaying a 3D model of a ladybird. Carefully examine the
+    3D model and count all spots on the ladybird's body/shell (excluding the head). State the total spot
+    count.
+  rubric:
+  - r: The response commits to one unambiguous final integer total for the spots on the ladybird body/shell, excluding the head. Accept digits or number words. Ignore intermediate counts and numbers unrelated to the final spot total. If the response offers a range, multiple alternative final totals, or no final total, this criterion is UNMET. The final total is exactly 16.
+    w: 20
+  - r: The response commits to one unambiguous final integer total for the spots on the ladybird body/shell, excluding the head. Accept digits or number words. Ignore intermediate counts and numbers unrelated to the final spot total. If the response offers a range, multiple alternative final totals, or no final total, this criterion is UNMET. The final total is between 15 and 17, inclusive.
+    w: 20
+  - r: The response commits to one unambiguous final integer total for the spots on the ladybird body/shell, excluding the head. Accept digits or number words. Ignore intermediate counts and numbers unrelated to the final spot total. If the response offers a range, multiple alternative final totals, or no final total, this criterion is UNMET. The final total is between 14 and 18, inclusive.
+    w: 20
+  - r: The response commits to one unambiguous final integer total for the spots on the ladybird body/shell, excluding the head. Accept digits or number words. Ignore intermediate counts and numbers unrelated to the final spot total. If the response offers a range, multiple alternative final totals, or no final total, this criterion is UNMET. The final total is between 13 and 19, inclusive.
+    w: 20
+  - r: The response commits to one unambiguous final integer total for the spots on the ladybird body/shell, excluding the head. Accept digits or number words. Ignore intermediate counts and numbers unrelated to the final spot total. If the response offers a range, multiple alternative final totals, or no final total, this criterion is UNMET. The final total is between 12 and 20, inclusive.
+    w: 20
+  archives: []
+- name: diamond-rose-seats
+  url: https://diamondrosesanctuary.com/rentals
+  prompt: You are visiting diamondrosesanctuary.com. I'm booking a trip here and want to know how many
+    chairs are at the kitchen table. State the precise number of chairs.
+  rubric:
+  - r: Confirms there are 7 chairs at the kitchen table
+    w: 100
+  archives: []
+- name: epa-air-quality
+  url: https://www.epa.gov/
+  prompt: You are on epa.gov. Navigate to and use the EPA's AirNow interactive map service to find the
+    air quality data near zip code 35173 for April 19, 2024. Your answer should identify the nearest monitoring
+    site, its specific site ID, the primary pollutant reported, and the daily AQI value for that date.
+  rubric:
+  - r: The agent identifies the nearest monitoring site as Leeds
+    w: 20
+  - r: 'The agent provides the correct site ID: 010731010'
+    w: 20
+  - r: The agent correctly states the main pollutant as PM2.5
+    w: 30
+  - r: The agent reports the daily AQI value for April 19, 2024, as 56
+    w: 30
+  archives: []
+- name: costco-login
+  env: rfp-liveweb
+  url: https://www.costco.com/
+  prompt: "Sign in to the existing Costco account at Costco.com using the email address and password configured securely for this run. Open the sign-in form, enter the supplied credentials, and submit. Finish when the site visibly confirms a successful authenticated session, such as the account page or a signed-in account menu. Do not create an account, reset a password, change account settings, or purchase anything. Never include the password in the final response. If credentials are missing or an authentication challenge cannot be completed with configured access, stop and report the task as blocked.Use the browser_snapshot, browser_click, browser_navigate, browser_scroll and browser_screenshot tools to operate the Browserbase-hosted browser. These tools and credential entry share the same remote session. Screenshot input masks appear even for empty fields and do not prove successful entry. Use current stable ID selectors where available. Report tool destination restrictions accurately; they do not mean credentials are missing. Stop after a credential rejection rather than retrying the same credentials. \n\nCredential entry: the configured_credentials tool service has the values for this task. Navigate to the official form, call list_login_fields to get its current page_url and input selectors, then call fill_configured_field for email and password. Never attempt to retrieve or display the stored values. Submit using the normal browser tools.In your final response, state which steps actually succeeded and what you observed, without repeating credentials or the confirmation number."
+  rubric:
+  - r: The agent reaches the official Costco sign-in flow from Costco.com.
+    w: 1
+  - r: The configured account email address and password are entered in the correct fields without exposing the password in the final response.
+    w: 1
+  - r: The sign-in is submitted and the site visibly confirms an authenticated account session; an error or unresolved authentication challenge does not satisfy this criterion.
+    w: 1
+  - r: The agent accurately reports the login outcome without creating an account, resetting a password, changing account settings, or purchasing anything.
+    w: 1
+  credential_profile: costco
+  use_visual_grading: false
+  archives: []

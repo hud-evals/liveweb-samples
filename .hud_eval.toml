@@ -1,0 +1,11 @@
+# Screenshot compression for visually heavy pages (3D viewers, photo-dense
+# sites). Full-resolution PNG history overruns the provider's 32 MB request
+# cap; WebP re-encoding keeps every frame at identical pixel dimensions
+# (same token cost) while cutting bytes ~9x on photographic content.
+[eval]
+agent = "claude"
+[claude]
+model = "claude-opus-5"
+[claude.screenshot_encoding]
+mime_type = "image/webp"
+quality = 40
